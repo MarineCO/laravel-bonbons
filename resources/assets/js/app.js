@@ -1,4 +1,6 @@
-axios = require('axios');
+window.axios = require('axios');
+
+console.log('hello');
 
 (function() {
 
@@ -8,6 +10,7 @@ axios = require('axios');
 
 		init: function() {
 			this.listeners();
+			this.getData();
 		},
 
 		listeners: function() {
@@ -15,8 +18,18 @@ axios = require('axios');
 			$('#more').on('click', this.ajaxMore);
 		},
 
+		getData: function() {
+			axios.get('/api/')
+				.then(response => {
+					console.log(response.data);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		},
+
 		ajaxLess: function() {
-			axios.get('/')
+			axios.put('/api/')
 				.then(response => {
 					console.log(response.data);
 				})
@@ -33,3 +46,4 @@ axios = require('axios');
 	app.init();
 
 })();
+

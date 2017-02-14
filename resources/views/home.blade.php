@@ -8,19 +8,18 @@
 	<h1>Sweets shop</h1>
 	<div>
 		<ul>
-
-		@foreach ($sweets as $sweet)
-
-			<li>{{ $sweet->name }}</li>
-
-		@endforeach
-
+			<li>Name</li>
+			<li>Quantity</li>
+			<button id="more">+</button>
+			<button id="less">-</button>
 		</ul>
 
-		<button id="more">+</button>
-		<button id="less">-</button>
 	</div>
 
+	<script> window.Laravel = { 
+		csrfToken : "{{csrf_token()}}"
+		}; 
+	</script>
 	<script  type="text/javascript" src="{{mix('/js/app.js')}}"></script>
 </body>
 </html>
