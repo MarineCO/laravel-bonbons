@@ -1,20 +1,35 @@
+axios = require('axios');
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+(function() {
 
-require('./bootstrap');
+	'use strict';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+	let app = {
 
-Vue.component('example', require('./components/Example.vue'));
+		init: function() {
+			this.listeners();
+		},
 
-const app = new Vue({
-    el: '#app'
-});
+		listeners: function() {
+			$('#less').on('click', this.ajaxLess);
+			$('#more').on('click', this.ajaxMore);
+		},
+
+		ajaxLess: function() {
+			axios.get('/')
+				.then(response => {
+					console.log(response.data);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		},
+
+		ajaxMore: function() {
+			console.log('click');
+		}
+	}
+
+	app.init();
+
+})();
