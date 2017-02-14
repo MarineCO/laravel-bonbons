@@ -7,19 +7,23 @@
 <body>
 	<h1>Sweets shop</h1>
 	<div>
-		<ul>
-			<li>Name</li>
-			<li>Quantity</li>
-			<button id="more">+</button>
-			<button id="less">-</button>
-		</ul>
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>Quantity</td>
+			</tr>
+			<tr>
+				<td id="name"></td>
+				<td id="qty"></td>
+			</tr>
+		</table>
 
 	</div>
 
 	<script> window.Laravel = { 
 		csrfToken : "{{csrf_token()}}"
-		}; 
-	</script>
-	<script  type="text/javascript" src="{{mix('/js/app.js')}}"></script>
+	}; 
+</script>
+<script  type="text/javascript" src="{{mix('/js/app.js')}}"></script>
 </body>
 </html>

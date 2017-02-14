@@ -21,11 +21,26 @@ console.log('hello');
 		getData: function() {
 			axios.get('/api/')
 				.then(response => {
-					console.log(response.data);
+					this.data(response.data);
 				})
 				.catch(function(error) {
 					console.log(error);
 				});
+		},
+
+		data: function(res) {
+			console.log(res);
+			let len = res.length;
+			for (let i = 0; i < len; i++) {
+			
+				$('#name').append('<tr><td>'+res[i].name+'</td></tr>');
+
+				$('#qty').append('<tr>'
+					+'<td><button id="more">+</button></td>'
+					+'<td>'+res[i].qty+'</td>'
+					+'<td><button id="less">-</button></td>'
+					+'</tr>');
+			}
 		},
 
 		ajaxLess: function() {
