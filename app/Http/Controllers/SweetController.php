@@ -12,4 +12,5 @@ class SweetController extends Controller
     	return view('home', ['sweets' => $sweets]);
     }
 
+
 }

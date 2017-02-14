@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
+	response()->json(\App\Sweet::all());
     return view('home');
 });
+
+Route::get('/', 'SweetController@getIndex');
+
+Route::post('/sell/{id}', 'SweetController@postLess');
