@@ -1,4 +1,4 @@
-window.axios = require('axios');
+require('./bootstrap');
 
 console.log('hello');
 
@@ -9,7 +9,6 @@ console.log('hello');
 	let app = {
 
 		init: function() {
-			this.listeners();
 			this.getData();
 		},
 
@@ -20,45 +19,55 @@ console.log('hello');
 
 		getData: function() {
 			axios.get('/api/')
-				.then(response => {
-					this.data(response.data);
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
+			.then(response => {
+				console.log(response.data);
+				this.data(response.data);
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 		},
 
 		data: function(res) {
-			console.log(res);
 			let len = res.length;
 			for (let i = 0; i < len; i++) {
-			
-				$('#name').append('<tr><td>'+res[i].name+'</td></tr>');
 
-				$('#qty').append('<tr>'
-					+'<td><button id="more">+</button></td>'
-					+'<td>'+res[i].qty+'</td>'
-					+'<td><button id="less">-</button></td>'
-					+'</tr>');
+				$('#id').append('<tr><td>'+res[i].id+'</td></tr>');
+				$('#name').append('<tr><td>'+res[i].name+'</td></tr>');
 			}
+
+			this.listeners();
 		},
 
 		ajaxLess: function() {
-			axios.put('/api/')
-				.then(response => {
-					console.log(response.data);
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
+			let id = $('#less').data("id");
+			
+			axios.post('/api/less/' + id)
+			.then(response => {
+				$('#qty').html(response.data +' sweets');
+			})
+			.catch(function(error) {
+				console.log('error ajaxLess');
+			});
 		},
 
 		ajaxMore: function() {
-			console.log('click');
+			let id = $('#more').data("id");
+
+			axios.post('/api/more/' + id)
+			.then(response => {
+				$('#qty').html(response.data +' sweets');
+			})
+			.catch(function(error) {
+				console.log('error ajaxMore');
+			});
 		}
+
 	}
 
 	app.init();
 
 })();
+
+
 

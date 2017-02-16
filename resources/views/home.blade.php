@@ -13,24 +13,44 @@
 		<table class="ui unstackable table">
 			<thead>
 				<tr>
+					<th>Id</th>
 					<th>Name</th>
+					<th>Sell</th>
 					<th>Quantity</th>
+					<th>Restock</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
+					<th id="id"></th>
 					<th id="name"></th>
-					<th id="qty"></th>
+
+					@foreach ($sweets as $sweet)
+
+					<th>
+						<button id="more" data-id="{{ $sweet->id }}" class="ui teal button">+</button>
+					</th>
+					
+					<th>
+						<div id="qty" class="ui left aligned container">{{ $sweet->qty }} sweets</div>
+					</th>
+					<th>
+						<button id="less" data-id="{{ $sweet->id }}" class="ui yellow button">-</button>
+					</th>
+
+					@endforeach
+
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
 
-	<script> window.Laravel = { 
-		csrfToken : "{{csrf_token()}}"
-	}; 
-</script>
-<script  type="text/javascript" src="{{mix('/js/app.js')}}"></script>
+	<script> 
+		window.Laravel = { 
+			csrfToken : "{{csrf_token()}}"
+		}; 
+	</script>
+	<script  type="text/javascript" src="{{mix('/js/app.js')}}"></script>
 </body>
 </html>

@@ -15,10 +15,25 @@ use App\Sweet;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
 });
 
 Route::get('/', function() {
 	return response()->json(Sweet::all());
 });
 
+Route::post('/less/{id}', function($id) {
+	$sweets = Sweet::find($id);
+	$sweets->qty--;
+	$sweets->save();
+
+	return $sweets->qty;
+});
+
+Route::post('/more/{id}', function($id) {
+	$sweets = Sweet::find($id);
+	$sweets->qty++;
+	$sweets->save();
+
+	return $sweets->qty;
+});

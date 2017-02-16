@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', function() {
+	$sweets = \App\Sweet::all();
+	return view('home', ['sweets' => $sweets]);
 });
