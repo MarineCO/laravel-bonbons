@@ -21,26 +21,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th id="id"></th>
-					<th id="name"></th>
-
 					@foreach ($sweets as $sweet)
+				<tr>
+					<td id="id">{{ $sweet->id }}</td>
+					<td id="name">{{ $sweet->name }}</td>
 
-					<th>
-						<button id="more" data-id="{{ $sweet->id }}" class="ui teal button">+</button>
-					</th>
-					
-					<th>
-						<div id="qty" class="ui left aligned container">{{ $sweet->qty }} sweets</div>
-					</th>
-					<th>
-						<button id="less" data-id="{{ $sweet->id }}" class="ui yellow button">-</button>
-					</th>
 
-					@endforeach
-
+					<td>
+						<button data-id="{{ $sweet->id }}" class="morebtn ui teal button">+</button>
+					</td>
+					<td>
+						<span class="qty ui left aligned container">{{ $sweet->qty }} sweets</span>
+					</td>
+					<td>
+						<button data-id="{{ $sweet->id }}" class="lessbtn ui yellow button">-</button>
+					</td>
 				</tr>
+					@endforeach
 			</tbody>
 		</table>
 

@@ -13,14 +13,13 @@ console.log('hello');
 		},
 
 		listeners: function() {
-			$('#less').on('click', this.ajaxLess);
-			$('#more').on('click', this.ajaxMore);
+			$(".lessbtn").on('click', this.ajaxLess);
+			$(".morebtn").on('click', this.ajaxMore);
 		},
 
 		getData: function() {
 			axios.get('/api/')
 			.then(response => {
-				console.log(response.data);
 				this.data(response.data);
 			})
 			.catch(function(error) {
@@ -29,22 +28,15 @@ console.log('hello');
 		},
 
 		data: function(res) {
-			let len = res.length;
-			for (let i = 0; i < len; i++) {
-
-				$('#id').append('<tr><td>'+res[i].id+'</td></tr>');
-				$('#name').append('<tr><td>'+res[i].name+'</td></tr>');
-			}
-
 			this.listeners();
 		},
 
 		ajaxLess: function() {
-			let id = $('#less').data("id");
+			let id = $(".lessbtn").data("id");
 			
 			axios.post('/api/less/' + id)
 			.then(response => {
-				$('#qty').html(response.data +' sweets');
+				$('.qty').html(response.data +' sweets');
 			})
 			.catch(function(error) {
 				console.log('error ajaxLess');
@@ -52,11 +44,11 @@ console.log('hello');
 		},
 
 		ajaxMore: function() {
-			let id = $('#more').data("id");
+			let id = $(".morebtn").data("id");
 
 			axios.post('/api/more/' + id)
 			.then(response => {
-				$('#qty').html(response.data +' sweets');
+				$('.qty').html(response.data +' sweets');
 			})
 			.catch(function(error) {
 				console.log('error ajaxMore');
